@@ -1,0 +1,6 @@
+{
+  "name": "SME Readiness Portal India",
+  "description": "Assess Indian SME credit readiness, submit KYC verification documents, and download draft credit readiness guidance reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
