@@ -1,5 +1,6 @@
 import React from 'react';
 import { ApplicationState } from '../types';
+import { maskGstin, maskPan } from '../utils/masking';
 import {
   BadgeCheck,
   Building,
@@ -85,11 +86,11 @@ export const VerifiedBusinessProfileReport: React.FC<VerifiedBusinessProfileRepo
             </div>
             <div>
               <span className="text-slate-400 block">PAN Status:</span>
-              <span className="font-mono font-bold text-emerald-700">Verified ({state.business.pan})</span>
+              <span className="font-mono font-bold text-emerald-700">Verified ({maskPan(state.business.pan)})</span>
             </div>
             <div>
               <span className="text-slate-400 block">GSTIN Status:</span>
-              <span className="font-mono font-bold text-emerald-700">Active ({state.business.gstin || 'N/A'})</span>
+              <span className="font-mono font-bold text-emerald-700">Active ({maskGstin(state.business.gstin)})</span>
             </div>
           </div>
         </div>

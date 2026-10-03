@@ -23,28 +23,50 @@ A specialized, responsive financial-services web application designed for Indian
 - Status overview banner for applicant enterprise (`Sunrise Components India Private Limited`).
 - Dynamic progress bar, next-step action card, toll-free help desk information (+91 1800 123 4567), and demo reset controls.
 
-### 4. 5-Step Application Wizard (`/application/*`)
-Integrated sticky top progress Stepper with step letter badges (A–E) and mobile status indicators:
-- **Step A: Business Registration (`/application/registration`)**:
-  - Detailed entity inputs: Legal name, trade name, constitution (Private Limited, Partnership, LLP, Proprietorship, etc.), date of incorporation, corporate PAN, GSTIN, registered office address, PIN code, industry sector, employee headcount, and language preferences.
-- **Step B: Product Selection (`/application/product-selection`)**:
-  - Selectable service packages with real-time subtotal, 18% GST (CGST+SGST / IGST) breakdown, and statutory guidance notes.
-- **Step C: KYC & Documents (`/application/kyc`)**:
-  - Authorized signatory credentials and mandatory legal declaration.
-  - Interactive file upload manager supporting required documents (6-month bank statements, facility photos min. 2, GST certificate, financials) with one-click **"Use demo files"** quick loader.
-- **Step D: Payment Simulation (`/application/payment`)**:
-  - Dynamic checkout supporting UPI (`ananya@okaxis`), Card, and Net Banking.
-  - Itemized enrolled products breakdown matching exact product selections with 18% GST calculation.
-  - Instant official payment receipt modal with tax breakdown and print/PDF support.
-- **Step E: Draft Report (`/application/report`)**:
-  - Protected outcome gate unlocked upon payment.
-  - Primary **Credit Readiness Score (72/100 – Developing readiness)** with score bands (80–100, 60–79, Below 60) and 4 summary diagnostic cards.
-  - **Multi-Product Support**: If multiple products are selected, the report automatically compiles supplemental reports:
-    - *Business Grading & Maturity Assessment*
-    - *Verified Business Profile Dossier*
-    - *Due Diligence & Partnership Review*
-  - Statutory disclaimer: *"This draft shows an internal Credit Readiness Score for guidance only. It is not an external credit rating, credit opinion, lending decision, or loan approval."*
-  - Browser print-ready styling for saving as a PDF (`window.print()`).
+### 5. Guardrails & Deterministic Scoring Engine
+- **Deterministic 4-Pillar Scoring Model (0–100)**:
+  - *Business profile completeness* (max 25 points)
+  - *Document completeness* (max 35 points)
+  - *Verification readiness* (max 20 points)
+  - *Financial self-declaration* (max 20 points)
+  - Zero generative AI used for scoring; computed purely through verified fields and document states.
+- **Strict Product Boundaries**:
+  - Internal guidance only; never calls the score a credit rating, credit opinion, CIBIL score, bank score, or loan eligibility recommendation.
+  - Prohibits regulated lending claims (e.g. "loan approved", "guaranteed financing", "creditworthy", "eligible for financing").
+- **Mandatory Exact Legal Disclaimer**:
+  *“This Credit Readiness Score is an internal guidance score based on the information submitted in this application. It is not a credit rating, credit opinion, lending decision, loan approval, financial advice, or guarantee of financing.”*
+- **Sensitive-Data Protection & Masking**:
+  - Full PAN masked as `ABCDE****F`
+  - GSTIN masked as `22AAAA****1Z5`
+  - Mobile numbers masked as `+91 98765 *****`
+  - Email addresses masked as `a*****@sunrisecomponents.in`
+- **User Control & Manual Review**:
+  - Transparent "How this score is calculated" breakdown with model rules version (`v1.0.0-deterministic`) and calculation timestamp.
+  - "Report an issue with this score" manual review submission with immutable scoring guarantee.
+  - "Edit application details" for creating fresh application revisions.
+
+### 6. Internal Evaluation Console (`/internal/evals`)
+- Hidden testing console accessible via the **"Internal testing"** footer link.
+- Automated 18-test regression suite verifying:
+  - Test 1: Valid full application
+  - Test 2: Missing bank statement blocking
+  - Test 3: Invalid PAN validation
+  - Test 4: Invalid GSTIN validation
+  - Test 5: Proprietor without GSTIN allowance
+  - Test 6: Director without GSTIN blocking
+  - Test 7: Incorrect OTP rejection
+  - Test 8: Correct OTP unlock
+  - Test 9: Score bounds (0–100)
+  - Test 10: Missing information neutral behaviour
+  - Test 11: Payment gating
+  - Test 12: Route protection & sequential redirect
+  - Test 13: LocalStorage persistence
+  - Test 14: Sensitive-data masking
+  - Test 15: Unsafe wording & policy checks
+  - Test 16: Score consistency across re-runs
+  - Test 17: Review request control
+  - Test 18: Reset safety (fictional demo data only)
+- Real-time pass/fail indicators, detailed assertion diagnostics, and one-click demo data reset with confirmation dialog.
 
 ---
 

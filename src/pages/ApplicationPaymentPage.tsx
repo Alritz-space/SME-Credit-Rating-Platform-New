@@ -16,6 +16,8 @@ import {
   FileText,
 } from 'lucide-react';
 import { ReceiptModal } from '../components/ReceiptModal';
+import { REQUIRED_LEGAL_DISCLAIMER } from '../utils/policyGuardrails';
+import { Info } from 'lucide-react';
 
 export const ApplicationPaymentPage: React.FC = () => {
   const { state, processDemoPayment, navigate } = useApp();
@@ -149,6 +151,14 @@ export const ApplicationPaymentPage: React.FC = () => {
                   })}
                 </span>
               </div>
+            </div>
+
+            {/* Mandatory Product Notice / Exact Disclaimer */}
+            <div className="max-w-md mx-auto p-3.5 bg-amber-50 rounded-xl border border-amber-200 text-[11px] text-amber-950 flex items-start gap-2 text-left">
+              <Info className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+              <p className="leading-relaxed">
+                <strong>Mandatory Product Notice:</strong> {REQUIRED_LEGAL_DISCLAIMER}
+              </p>
             </div>
 
             {/* Action Buttons */}

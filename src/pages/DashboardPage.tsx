@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { formatINR, PRODUCTS } from '../utils/constants';
+import { REQUIRED_LEGAL_DISCLAIMER } from '../utils/policyGuardrails';
+import { maskGstin, maskPan } from '../utils/masking';
 import {
   Building2,
   FileCheck,
@@ -25,9 +27,19 @@ export const DashboardPage: React.FC = () => {
     isStepComplete,
     calculateProgress,
     resetApplication,
+    scoreResult,
+    setGatingNotice,
   } = useApp();
 
   const [receiptOpen, setReceiptOpen] = useState(false);
+
+  // Enforce OTP gating: cannot access dashboard until verified
+  useEffect(() => {
+    if (!state.user.isVerified) {
+      setGatingNotice('Please complete mobile OTP verification before accessing the applicant dashboard.');
+      navigate('/verify-otp');
+    }
+  }, [state.user.isVerified, navigate, setGatingNotice]);
 
   const progress = calculateProgress();
   const firstName = state.user.fullName.split(' ')[0] || 'Ananya';
@@ -278,7 +290,7 @@ export const DashboardPage: React.FC = () => {
                   Draft Report
                 </p>
                 <p className="text-[10px] text-slate-500 mt-0.5">
-                  {reportDone ? 'Ready (72/100)' : 'Locked'}
+                  {reportDone ? `Ready (${scoreResult.score}/100)` : 'Locked'}
                 </p>
               </button>
             </div>
@@ -384,11 +396,11 @@ export const DashboardPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Prototype Guidance Note */}
-        <div className="p-4 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 flex items-start gap-2.5">
+        {/* Mandatory Product Notice / Exact Disclaimer */}
+        <div className="p-4 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-950 flex items-start gap-2.5">
           <Info className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
           <p className="leading-relaxed">
-            <strong>Prototype Disclosures:</strong> This is a demo application. No external credit rating or lending decision is issued. The Credit Readiness Score serves as internal guidance to prepare your documents and financials before approaching licensed lenders.
+            <strong>Mandatory Product Notice:</strong> {REQUIRED_LEGAL_DISCLAIMER}
           </p>
         </div>
       </div>

@@ -114,7 +114,7 @@ export const DueDiligenceReport: React.FC<DueDiligenceReportProps> = ({
           <div className="flex items-start gap-2">
             <Clock className="w-4 h-4 text-purple-700 shrink-0 mt-0.5" />
             <span>
-              <strong>Lending Preparedness:</strong> Recommend maintaining continuous audited financial statements for FY 2025-26 to fast-track formal credit line negotiations with institutional lenders.
+              <strong>Financial Record Readiness:</strong> Recommend maintaining continuous audited financial statements for FY 2025-26 to support structured discussions with financial institutions.
             </span>
           </div>
         </div>

@@ -17,6 +17,7 @@ import { ApplicationProductSelectionPage } from './pages/ApplicationProductSelec
 import { ApplicationKycPage } from './pages/ApplicationKycPage';
 import { ApplicationPaymentPage } from './pages/ApplicationPaymentPage';
 import { ApplicationReportPage } from './pages/ApplicationReportPage';
+import { InternalEvalsPage } from './pages/InternalEvalsPage';
 
 function AppLayout() {
   return (
@@ -36,6 +37,9 @@ function AppLayout() {
             <Route path="payment" element={<ApplicationPaymentPage />} />
             <Route path="report" element={<ApplicationReportPage />} />
           </Route>
+
+          {/* Internal Hidden Evaluation Console */}
+          <Route path="/internal/evals" element={<InternalEvalsPage />} />
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

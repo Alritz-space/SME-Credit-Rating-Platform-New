@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ShieldCheck, Phone, Mail, MapPin, ExternalLink, Info } from 'lucide-react';
 import { TermsModal } from './TermsModal';
 
@@ -119,9 +120,16 @@ export const Footer: React.FC = () => {
             <p>
               © 2026 SME Readiness Portal India. Built for MSME enablement.
             </p>
-            <p className="text-center sm:text-right">
-              Demo application — no external rating, credit decision, or payment is issued.
-            </p>
+            <div className="flex flex-wrap items-center gap-3 text-center sm:text-right">
+              <Link
+                to="/internal/evals"
+                className="text-[11px] text-slate-400 hover:text-white underline underline-offset-2 transition-colors"
+              >
+                Internal testing
+              </Link>
+              <span className="text-slate-700">·</span>
+              <p>Demo application — no external rating, credit decision, or payment is issued.</p>
+            </div>
           </div>
         </div>
       </footer>

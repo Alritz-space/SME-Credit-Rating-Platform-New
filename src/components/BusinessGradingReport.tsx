@@ -120,7 +120,7 @@ export const BusinessGradingReport: React.FC<BusinessGradingReportProps> = ({
       {/* Operational Highlights Box */}
       <div className="bg-indigo-50/40 rounded-xl p-4 border border-indigo-100 space-y-3">
         <h4 className="text-xs font-bold text-indigo-950 uppercase tracking-wide">
-          Procurement & Vendor Rating Observations
+          Procurement & Operational Observations
         </h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-700">
           <div className="flex items-start gap-2">
@@ -132,7 +132,7 @@ export const BusinessGradingReport: React.FC<BusinessGradingReportProps> = ({
           <div className="flex items-start gap-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
             <span>
-              <strong>Corporate Scale:</strong> Turnover tier ({state.business.yearlyTurnover}) qualifies for tier-2 institutional supplier frameworks.
+              <strong>Corporate Scale:</strong> Turnover tier ({state.business.yearlyTurnover}) aligns with tier-2 institutional supplier criteria.
             </span>
           </div>
         </div>
